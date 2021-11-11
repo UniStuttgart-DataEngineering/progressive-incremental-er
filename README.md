@@ -4,9 +4,9 @@ This is the source code for the framework proposed in the paper "Progressive Ent
 #### Datasets
 Datasets for 'dblp-acm' and 'movies' are in `data/cleanCleanErDatasets`. The datasets 'dbpedia' and 'synthetic' can be downloaded from this [Mendeley](https://data.mendeley.com/datasets/4whpm32y47/7) repository, used to assess [JedAI](https://github.com/scify/JedAIToolkit/) performance.
 - dataset 'dbpedia': file newDBPedia.tar.xz in Mendeley's Real Clean-Clean ER data
-- dataset 'synthetic': files 2MProfiles and 2MIdDuplicates in Mendeley's Synthetic Dirty ER data 
+- dataset 'synthetic': files 2MProfiles and 2MIdDuplicates in Mendeley's Synthetic Dirty ER data
 
-To download additional datasets from JedAI you can run the `data/download.sh` script from inside the `data/` directory (svn required). 
+To download additional datasets from JedAI you can run the `data/download.sh` script from inside the `data/` directory (svn required).
 
 #### Requirements
 The framework is written in [Scala](https://www.scala-lang.org/) (version 2.13.1) and it requires SBT and OpenJDK to be installed and executed.
@@ -24,21 +24,21 @@ sbt publishLocal
 #### Run
 Clean-Clean ER. To run the framework for the 'movies' dataset (imdb-dbpedia) .
 ``` 
-sbt "runMain AkkaProgressiveIncrementalCCMain -d1 imdb -d2 dbpedia -gt movies --pname ieps -m ed -bp 0.05 -bg 0.05 --batches 1000 --rate 10 --budget 2"
+sbt "runMain AkkaProgressiveIncrementalCCMain -d1 imdb -d2 dbpedia -gt movies --pname ieps -m ed -bp 0.05 -bg 0.05 --batches 1000 --rate 100 --budget 2"
 ```
 
 Dirty ER. To run the framework for the 'synthetic' dataset (2M).
-``` 
+```
 sbt "runMain AkkaProgressiveIncrementalDirtyMain -d1 2M --gt 2M --pname ieps -m ed -bp 0.05 -bg 0.05 --batches 20000 --rate 32 --budget 60"
 ```
 
 About the options:
-- '-d1' specifies the first dataset. 
+- '-d1' specifies the first dataset.
 - '-d2' specifies the second dataset.
 - '-gt' specifies the groundtruth file.'
-- '--pname' specifies the prioritization method (ieps -> I-PES, ipcs -> I-PCS, ipbs3 -> I-PBS). 
+- '--pname' specifies the prioritization method (ieps -> I-PES, ipcs -> I-PCS, ipbs3 -> I-PBS).
 - '-m' specifies the similarity function used (js -> Jaccard, ed -> Edit Distance).
-- '-bp' and '-bg' specify the parameters for block pruning and block ghosting. For the dataset 'dbpedia' set `-bp 0.005`. 
+- '-bp' and '-bg' specify the parameters for block pruning and block ghosting. For the dataset 'dbpedia' set `-bp 0.005`.
 - '--batches' specifies the number of increments
 - '--rate' specifies how many increments per second the system receives
 - '--budget' specifies the budget in minutes
