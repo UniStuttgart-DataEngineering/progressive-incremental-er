@@ -18,12 +18,12 @@ Library dependencies are listed in the SBT configuration file `build.sbt`.
 #### Installation
 To install and download library dependencies:
 ```
-sbt publishLocal
+./install.sh
 ```
 
 #### Run
 Clean-Clean ER. To run the framework for the 'movies' dataset (imdb-dbpedia) .
-``` 
+```
 sbt "runMain AkkaProgressiveIncrementalCCMain -d1 imdb -d2 dbpedia -gt movies --pname ieps -m ed -bp 0.05 -bg 0.05 --batches 1000 --rate 100 --budget 2"
 ```
 
